@@ -42,21 +42,19 @@
     .nav a:hover {
       color: #ffec99;
     }
-  </style>
-   <script>
-    function resizeIframe(iframe) {
-      iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+    .nav a.active {
+      color: #ffec99;
     }
-  </script>
+  </style>
 </head>
 <body>
   <ul class="nav">
-    <li><a href="./wb3.html">web3</a></li>
-    <li><a href="./btc.html">btc</a></li>
-    <li><a href="./evm.html">evm</a></li>
-    <li><a href="./solana.html">solana</a></li>
-    <li><a href="./move.html">move</a></li>
-    <li><a href="./zkp.html">zkp</a></li>
+    <li><a class="active" href="./wb3.html">Web3</a></li>
+    <li><a href="./btc.html">BTC</a></li>
+    <li><a href="./evm.html">EVM</a></li>
+    <li><a href="./solana.html">Solana</a></li>
+    <li><a href="./move.html">Move</a></li>
+    <li><a href="./zkp.html">ZKP</a></li>
   </ul>
   <iframe title="web3" src="./wb3.html" id="iframe"></iframe>
   <script>
@@ -69,6 +67,8 @@
         const href = e.target.getAttribute('href')
         if (href) {
           iFrame.setAttribute('src', href)
+          nav.querySelector('.active').setAttribute('class', '')
+          e.target.setAttribute('class', 'active')
         }
       }
     })
