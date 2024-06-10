@@ -4,9 +4,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #iframe {
+      width: 100vw;
+      max-width: 100%;
+      border: 0;
+      overflow: hidden;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .nav {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      background-color: rgba(0,0,0,0.8);
+      color: white;
+      list-style: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 0;
+      gap: 20px;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      transition: all 0.5s;
+    }
+    .nav a:hover {
+      color: #ffec99;
+    }
+  </style>
+   <script>
+    function resizeIframe(iframe) {
+      iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+  </script>
 </head>
 <body>
-  <ul>
+  <ul class="nav">
     <li><a href="./wb3.html">web3</a></li>
     <li><a href="./btc.html">btc</a></li>
     <li><a href="./evm.html">evm</a></li>
@@ -14,5 +58,21 @@
     <li><a href="./move.html">move</a></li>
     <li><a href="./zkp.html">zkp</a></li>
   </ul>
+  <iframe title="web3" src="./wb3.html" id="iframe"></iframe>
+  <script>
+    const nav = document.querySelector('.nav')
+    const iFrame = document.getElementById('iframe')
+    nav.addEventListener('click', (e) => {
+      e.preventDefault()
+      console.log()
+      if (e.target.tagName === 'A') {
+        const href = e.target.getAttribute('href')
+        if (href) {
+          iFrame.setAttribute('src', href)
+        }
+      }
+    })
+
+  </script>
 </body>
 </html>
