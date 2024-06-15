@@ -1,4 +1,3 @@
-
 const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, {
   initialData: {
     elements: [

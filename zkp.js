@@ -1,4 +1,3 @@
-
 const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, {
   initialData: {
     elements: [
@@ -2204,28 +2203,28 @@ const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, {
 
 function handleLinkOpen(element, event) {
   event.preventDefault();
-  if(element.link.startsWith('https://')){
-      window.open(element.link, '_blank');
+  if (element.link.startsWith("https://")) {
+    window.open(element.link, "_blank");
   } else {
-      let tag_link = window.location.origin + "/map/"+ element.link;
-      $('#details_modal').addClass('active');
-      if($('#details_modal iframe').attr('src') == tag_link){
-          $('#show_modal_button').css('display', 'none');
-          $('#hide_modal_button').css('display', 'flex');
-      } else {
-          $('#loading').css('display', 'flex');
-          $('#show_modal_button').css('display', 'none');
-          $('#hide_modal_button').css('display', 'flex');
-          setTimeout(() => {
-              $('#details_modal iframe').attr('src', tag_link);
-              $("iframe").on("load", function() {
-                  $('#loading').hide()
-              })
-          }, 700);
-      }
+    let tag_link = window.location.origin + "/map/" + element.link;
+    $("#details_modal").addClass("active");
+    if ($("#details_modal iframe").attr("src") == tag_link) {
+      $("#show_modal_button").css("display", "none");
+      $("#hide_modal_button").css("display", "flex");
+    } else {
+      $("#loading").css("display", "flex");
+      $("#show_modal_button").css("display", "none");
+      $("#hide_modal_button").css("display", "flex");
+      setTimeout(() => {
+        $("#details_modal iframe").attr("src", tag_link);
+        $("iframe").on("load", function () {
+          $("#loading").hide();
+        });
+      }, 700);
+    }
   }
-};
+}
 
 const setExcalidrawAPI = (api) => {
-  console.log('setExcalidrawAPI', api);
-}
+  console.log("setExcalidrawAPI", api);
+};
