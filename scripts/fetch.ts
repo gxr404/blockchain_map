@@ -20,8 +20,13 @@ async function getExcalidrawData(url: string) {
 async function update(url: string, dist: string) {
   const distPath = resolve(dirname(fileURLToPath(import.meta.url)), dist)
   const excalidrawDataStr = await getExcalidrawData(url)
+  if (!excalidrawDataStr) {
+    console.error(`not found ${url}`)
+    return
+  }
   const sourceData = (await readFile(distPath)).toString()
-  const reg = /\/\/ === Excalidraw Start ===\n(.*?)\n\/\/ === Excalidraw End ===/gm
+  const reg = /\/\/ === Excalidraw Start ===\n([\s\S.]*)\/\/ === Excalidraw End ===/gm
+  // console.log(reg.test(sourceData))
   const updateData = sourceData.replace(reg, `// === Excalidraw Start ===\n${excalidrawDataStr}// === Excalidraw End ===`)
   await writeFile(distPath, updateData)
 }
