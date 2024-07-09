@@ -6,11 +6,14 @@ import prettier from 'prettier'
 async function getExcalidrawData(url: string) {
   const response = await fetch(url)
   const html = await response.text()
-  const reg = /React\.createElement\(ExcalidrawLib\.Excalidraw, ({[\s\S.]*?})\)/gm
+  const reg = /React\.createElement\(ExcalidrawLib\.Excalidraw, ({[\s\S]*?})\)/gm
   const [, excalidrawStr] = reg.exec(html) || []
   let result = ''
   try {
-    result = await prettier.format(`const excalidrawData = ${excalidrawStr}`, { semi: false, parser: "babel" });
+    result = await prettier.format(
+      `const excalidrawData = ${excalidrawStr}`,
+      { semi: false, parser: "babel" }
+    )
   } catch (e) {
     console.error(e)
   }
@@ -21,11 +24,15 @@ async function update(url: string, dist: string) {
   const distPath = resolve(dirname(fileURLToPath(import.meta.url)), dist)
   const excalidrawDataStr = await getExcalidrawData(url)
   if (!excalidrawDataStr) {
-    console.error(`not found ${url}`)
+    console.error(`× not found ${url}`)
     return
   }
   const sourceData = (await readFile(distPath)).toString()
-  const reg = /\/\/ === Excalidraw Start ===\n([\s\S.]*)\/\/ === Excalidraw End ===/gm
+  const reg = /\/\/ === Excalidraw Start ===\n([\s\S]*)\/\/ === Excalidraw End ===/gm
+  if (!reg.test(sourceData)) {
+    console.error(`× not match ${url}`)
+    return
+  }
   // console.log(reg.test(sourceData))
   const updateData = sourceData.replace(reg, `// === Excalidraw Start ===\n${excalidrawDataStr}// === Excalidraw End ===`)
   await writeFile(distPath, updateData)
@@ -46,4 +53,3 @@ async function run() {
 }
 
 run()
-
