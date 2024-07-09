@@ -1,4 +1,5 @@
-const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, {
+// === Excalidraw Start ===
+const excalidrawData =  {
   initialData: {
     elements: [
       {
@@ -2199,7 +2200,10 @@ const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, {
   isCollaborationEnabled: false,
   onLinkOpen: handleLinkOpen,
   excalidrawAPI: (api) => setExcalidrawAPI(api),
-});
+}
+// === Excalidraw End ===
+
+const ExcalidrawComponent = React.createElement(ExcalidrawLib.Excalidraw, excalidrawData);
 
 function handleLinkOpen(element, event) {
   event.preventDefault();

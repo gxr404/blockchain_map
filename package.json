@@ -1,0 +1,20 @@
+{
+  "name": "blockchain_map",
+  "version": "1.0.0",
+  "description": "收藏登链区块链图谱: https://learnblockchain.cn/maps/Web3",
+  "main": "btc.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "esno": "^4.7.0",
+    "prettier": "^3.3.2"
+  }
+}
