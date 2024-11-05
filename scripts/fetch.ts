@@ -48,6 +48,7 @@ async function run() {
     update('https://learnblockchain.cn/maps/Web3', '../web3.js'),
     update('https://learnblockchain.cn/maps/ZKP', '../ZKP.js'),
     update('https://learnblockchain.cn/maps/Job', '../job.js'),
+    update('https://learnblockchain.cn/maps/Solidity', '../solidity.js'),
   ]
   await Promise.all(fetchList)
   console.log('√ success')
